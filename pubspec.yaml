@@ -9,6 +9,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  http: ^1.2.1
+  cupertino_icons: ^1.0.6
+  flutter_riverpod: ^2.5.1
+  google_fonts: ^6.2.1
+  skeletonizer: ^1.1.2+1
+  shared_preferences: ^2.2.3
 
 dev_dependencies:
   flutter_test:
