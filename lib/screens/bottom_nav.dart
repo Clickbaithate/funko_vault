@@ -1,6 +1,9 @@
 // ignore_for_file: prefer_const_constructors, avoid_print
 import 'package:flutter/material.dart';
 import 'package:funko_vault/data/colors.dart';
+import 'package:funko_vault/screens/folder.dart';
+import 'package:funko_vault/screens/home.dart';
+import 'package:funko_vault/screens/liked.dart';
 
 class BottomNav extends StatefulWidget {
   const BottomNav({super.key});
@@ -12,13 +15,10 @@ class BottomNav extends StatefulWidget {
 class _BottomNavState extends State<BottomNav> {
 
   int _currentPageIndex = 1;
-  final _screens = const [
-    // FolderPage(),
-    // Home(),
-    // LikedPage()
-    Text('Folders Page', style: TextStyle(color: blackColor)),
-    Text('Home Page', style: TextStyle(color: blackColor)),
-    Text('Liked Page', style: TextStyle(color: blackColor)),
+  final _screens = [
+    FolderPage(),
+    HomePage(),
+    LikedPage()
   ];
 
   @override
