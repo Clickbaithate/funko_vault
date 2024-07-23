@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:funko_vault/models/funko.dart';
+import 'package:funko_vault/services/database.dart';
 import 'package:funko_vault/services/funko_service.dart';
 import 'package:http/http.dart' as http;
 
@@ -38,3 +39,36 @@ class FunkoListNotifier extends StateNotifier<AsyncValue<List<Funko>>> {
 final funkoListProvider = StateNotifierProvider<FunkoListNotifier, AsyncValue<List<Funko>>>((ref) {
   return FunkoListNotifier(FunkoService(http.Client()));
 });
+
+class LikedFunkosNotifier extends StateNotifier<List<Funko>> {
+  final DatabaseService _dbService;
+
+  LikedFunkosNotifier(this._dbService) : super([]) {
+    _loadLikedFunkos();
+  }
+
+  Future<void> _loadLikedFunkos() async {
+    final funkos = await _dbService.getLikedFunkos();
+    state = funkos;
+  }
+
+  Future<void> addFunko(Funko funko) async {
+    await _dbService.likeFunko(funko);
+    state = [...state, funko];
+  }
+
+  Future<void> removeFunko(int id) async {
+    await _dbService.unlikeFunko(id);
+    state = state.where((funko) => funko.id != id).toList();
+  }
+
+  Future<bool> isLiked(int id) async {
+    return await _dbService.isLiked(Funko(id: id, name: '', series: '', rating: '', scale: '', brand: '', type: '', image: ''));
+  }
+}
+
+final likedFunkosProvider = StateNotifierProvider<LikedFunkosNotifier, List<Funko>>((ref) {
+  final dbService = DatabaseService.instance;
+  return LikedFunkosNotifier(dbService);
+});
+
