@@ -1,4 +1,3 @@
-// ignore_for_file: prefer_const_constructors, avoid_print
 import 'package:flutter/material.dart';
 import 'package:funko_vault/data/colors.dart';
 import 'package:funko_vault/screens/folder.dart';
@@ -15,10 +14,11 @@ class BottomNav extends StatefulWidget {
 class _BottomNavState extends State<BottomNav> {
 
   int _currentPageIndex = 1;
-  final _screens = [
+
+  final List<Widget> _screens = [
     FolderPage(),
     HomePage(),
-    LikedPage()
+    LikedPage(),
   ];
 
   @override
@@ -30,7 +30,10 @@ class _BottomNavState extends State<BottomNav> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true,
-      body: _screens[_currentPageIndex],
+      body: IndexedStack(
+        index: _currentPageIndex,
+        children: _screens,
+      ),
       bottomNavigationBar: Container(
         margin: EdgeInsets.all(30),
         decoration: BoxDecoration(
@@ -69,7 +72,7 @@ class _BottomNavState extends State<BottomNav> {
               NavigationDestination(
                 icon: Icon(Icons.favorite_outline, color: grayColor, size: 40),
                 selectedIcon: Icon(Icons.favorite, color: redColor, size: 40),
-                label: "Folders Page",
+                label: "Liked Page",
               )
             ],
           ),
