@@ -8,12 +8,14 @@ import 'package:funko_vault/data/colors.dart';
 import 'package:funko_vault/services/provider.dart';
 
 class FunkoCard extends ConsumerWidget {
-  final Funko funko;
 
+  final Funko funko;
   const FunkoCard({super.key, required this.funko});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+
+    // Watches the likedFunkosProvider to determine if the current Funko is liked
     final isLiked = ref.watch(likedFunkosProvider.select((list) => list.any((f) => f.id == funko.id)));
 
     return GestureDetector(
@@ -42,12 +44,6 @@ class FunkoCard extends ConsumerWidget {
                 height: 210,
                 fit: BoxFit.cover,
               ),
-            ),
-            // Like & Folder Button
-            Positioned(
-              top: 8,
-              left: 8,
-              child: Text("Id: ${funko.id}"),
             ),
             Positioned(
               right: 8,
