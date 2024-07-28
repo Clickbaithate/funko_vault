@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:funko_vault/data/colors.dart';
 import 'package:funko_vault/screens/folder.dart';
@@ -58,19 +60,19 @@ class _BottomNavState extends State<BottomNav> {
             labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
             indicatorColor: Colors.transparent,
             onDestinationSelected: (index) => setState(() => _currentPageIndex = index),
-            destinations: const [
+            destinations: [
               NavigationDestination(
-                icon: Icon(Icons.folder_outlined, color: grayColor, size: 40),
+                icon: Icon(Icons.folder_outlined, color: biegeColor.withOpacity(0.3), size: 40),
                 selectedIcon: Icon(Icons.folder, color: biegeColor, size: 40),
                 label: "Folders Page",
               ),
               NavigationDestination(
-                icon: Icon(Icons.home_outlined, color: grayColor, size: 40),
+                icon: Icon(Icons.home_outlined, color: blueColor.withOpacity(0.3), size: 40),
                 selectedIcon: Icon(Icons.home, color: blueColor, size: 40),
                 label: "Home Page",
               ),
               NavigationDestination(
-                icon: Icon(Icons.favorite_outline, color: grayColor, size: 40),
+                icon: Icon(Icons.favorite_outline, color: redColor.withOpacity(0.3), size: 40),
                 selectedIcon: Icon(Icons.favorite, color: redColor, size: 40),
                 label: "Liked Page",
               )
