@@ -112,7 +112,7 @@ class FunkoCard extends ConsumerWidget {
                   ),
                 ),
               ),
-            ) // Funko Name & Series Container
+            )
           ],
         ),
       ),
