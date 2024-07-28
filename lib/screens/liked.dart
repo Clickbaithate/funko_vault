@@ -15,22 +15,18 @@ class LikedPage extends ConsumerWidget {
       appBar: AppBar(
         title: Text("Liked Funkos"),
       ),
-      body: likedFunkos.isEmpty
-          ? Center(
-              child: Text("No liked Funkos yet"),
-            )
-          : GridView.builder(
-              padding: const EdgeInsets.all(8.0),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 7 / 10
-              ),
-              itemCount: likedFunkos.length,
-              itemBuilder: (context, index) {
-                final funko = likedFunkos[index];
-                return FunkoCard(funko: funko);
-              },
-            ),
+      body: likedFunkos.isEmpty ? Center(child: Text("No liked Funkos yet")) : GridView.builder(
+        padding: const EdgeInsets.all(8.0),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          childAspectRatio: 7 / 10
+        ),
+        itemCount: likedFunkos.length,
+        itemBuilder: (context, index) {
+          final funko = likedFunkos[index];
+          return FunkoCard(funko: funko);
+        },
+      ),
     );
   }
 }
