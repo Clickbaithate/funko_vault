@@ -19,6 +19,7 @@ dependencies:
   path: ^1.8.3
   fluttertoast: ^8.1.1
   intl: ^0.18.0
+  like_button: ^2.0.5
 
 dev_dependencies:
   flutter_test:

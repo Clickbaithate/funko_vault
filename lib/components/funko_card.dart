@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:funko_vault/models/funko.dart';
 import 'package:funko_vault/data/colors.dart';
 import 'package:funko_vault/services/provider.dart';
+import 'package:like_button/like_button.dart';
 
 class FunkoCard extends ConsumerWidget {
 
@@ -16,16 +17,21 @@ class FunkoCard extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
 
     // Watches the likedFunkosProvider to determine if the current Funko is liked
-    final isLiked = ref.watch(likedFunkosProvider.select((list) => list.any((f) => f.id == funko.id)));
+    final isFunkoLiked = ref.watch(likedFunkosProvider.select((list) => list.any((f) => f.id == funko.id)));
+
+    // Helper methods
+    Future<bool> onLike(bool isLiked) async {
+      if (isLiked) {
+        ref.read(likedFunkosProvider.notifier).removeFunko(funko.id);
+        return false;
+      } else {
+        ref.read(likedFunkosProvider.notifier).addFunko(funko);
+        return true;
+      }
+    }
 
     return GestureDetector(
-      onDoubleTap: () {
-        if (isLiked) {
-          ref.read(likedFunkosProvider.notifier).removeFunko(funko.id);
-        } else {
-          ref.read(likedFunkosProvider.notifier).addFunko(funko);
-        }
-      },
+      onDoubleTap: () async => await onLike(isFunkoLiked),
       child: Card(
         elevation: 20,
         color: whiteColor,
@@ -50,15 +56,23 @@ class FunkoCard extends ConsumerWidget {
               top: 8,
               child: Column(
                 children: [
-                  IconButton(
-                    onPressed: () {
-                      if (isLiked) {
-                        ref.read(likedFunkosProvider.notifier).removeFunko(funko.id);
-                      } else {
-                        ref.read(likedFunkosProvider.notifier).addFunko(funko);
-                      }
+                  // IconButton(
+                  //   onPressed: () {
+                  //     if (isLiked) {
+                  //       ref.read(likedFunkosProvider.notifier).removeFunko(funko.id);
+                  //     } else {
+                  //       ref.read(likedFunkosProvider.notifier).addFunko(funko);
+                  //     }
+                  //   },
+                  //   icon: Icon(Icons.favorite, color: isLiked ? redColor : Colors.grey),
+                  // ),
+                  LikeButton(
+                    isLiked: isFunkoLiked,
+                    onTap: onLike,
+                    likeBuilder: (isLiked) {
+                      var icon = isLiked ? Icon(Icons.favorite, color: redColor) : Icon(Icons.favorite_outline, color: grayColor);
+                      return icon;
                     },
-                    icon: Icon(Icons.favorite, color: isLiked ? redColor : Colors.grey),
                   ),
                   IconButton(
                     onPressed: () {}, 
