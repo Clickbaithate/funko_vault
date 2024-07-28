@@ -6,8 +6,12 @@ import 'package:funko_vault/components/funko_card.dart';
 import 'package:funko_vault/services/provider.dart'; 
 
 class LikedPage extends ConsumerWidget {
+
+  const LikedPage({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+
     // Get the list of liked Funkos from the provider
     final likedFunkos = ref.watch(likedFunkosProvider);
 
@@ -15,7 +19,7 @@ class LikedPage extends ConsumerWidget {
       appBar: AppBar(
         title: Text("Liked Funkos"),
       ),
-      body: likedFunkos.isEmpty ? Center(child: Text("No liked Funkos yet")) : GridView.builder(
+      body: likedFunkos.isEmpty ? Center(child: Text("No liked Funkos yet!")) : GridView.builder(
         padding: const EdgeInsets.all(8.0),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
@@ -28,5 +32,6 @@ class LikedPage extends ConsumerWidget {
         },
       ),
     );
+
   }
 }

@@ -4,16 +4,12 @@ import 'package:funko_vault/data/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class FilterPill extends ConsumerWidget {
+
   final String series;
   final bool isSelected;
   final Function(String) onSelected;
 
-  const FilterPill({
-    Key? key,
-    required this.series,
-    required this.isSelected,
-    required this.onSelected,
-  }) : super(key: key);
+  const FilterPill({ super.key, required this.series, required this.isSelected, required this.onSelected });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -31,11 +27,7 @@ class FilterPill extends ConsumerWidget {
           child: Center(
             child: Text(
               series,
-              style: GoogleFonts.fredoka(
-                fontSize: 12,
-                color: blackColor,
-                fontWeight: FontWeight.bold,
-              ),
+              style: GoogleFonts.fredoka(fontSize: 12, color: blackColor, fontWeight: FontWeight.bold)
             ),
           ),
         ),
