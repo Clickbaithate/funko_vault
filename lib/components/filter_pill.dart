@@ -21,17 +21,19 @@ class FilterPill extends ConsumerWidget {
           width: 125,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(24),
-            color: Colors.white,
-            border: Border.all(color: isSelected ? Colors.blue : grayColor),
+            color: whiteColor,
+            border: Border.all(color: isSelected ? blueColor : grayColor),
           ),
           child: Center(
             child: Text(
               series,
-              style: GoogleFonts.fredoka(fontSize: 12, color: blackColor, fontWeight: FontWeight.bold)
+              style: GoogleFonts.fredoka(fontSize: 12, color: blackColor, fontWeight: FontWeight.bold),
+              overflow: TextOverflow.ellipsis,
             ),
           ),
         ),
       ),
     );
   }
+  
 }
