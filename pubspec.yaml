@@ -13,13 +13,14 @@ dependencies:
   cupertino_icons: ^1.0.6
   flutter_riverpod: ^2.5.1
   google_fonts: ^6.2.1
-  skeletonizer: ^1.1.2+1
   cached_network_image: ^3.3.1
   sqflite: ^2.3.2
   path: ^1.8.3
   fluttertoast: ^8.1.1
   intl: ^0.18.0
   like_button: ^2.0.5
+  lottie: ^1.2.1
+  flutter_animate: ^4.5.0
 
 dev_dependencies:
   flutter_test:
